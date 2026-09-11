@@ -5,13 +5,13 @@ export default function NotFound() {
   return (
     <div className="shell grid min-h-[70vh] place-items-center py-32 text-center">
       <div>
-        <SectionLabel className="mb-6 justify-center">Error 404</SectionLabel>
-        <h1 className="text-hero">Nothing on this frame.</h1>
-        <p className="mx-auto mt-6 max-w-md text-ink-secondary">
+        <SectionLabel className="mb-6 justify-center animate-fade-up">Error 404</SectionLabel>
+        <h1 className="text-hero animate-fade-up [animation-delay:90ms]">Nothing on this frame.</h1>
+        <p className="mx-auto mt-6 max-w-md text-ink-secondary animate-fade-up [animation-delay:180ms]">
           The page you&apos;re looking for has moved or never existed. Let&apos;s
           get you back to the gear.
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 flex flex-wrap justify-center gap-3 animate-fade-up [animation-delay:270ms]">
           <Button href="/" size="lg">Back home</Button>
           <Button href="/browse" size="lg" variant="secondary">Browse Gear</Button>
         </div>

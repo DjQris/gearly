@@ -6,14 +6,16 @@ export type Photo = { id: string; alt: string };
 const BASE = "https://images.unsplash.com/photo-";
 
 /**
- * Build a sized, cropped Unsplash URL. next/image re-optimizes on top of this,
- * but requesting a sane width keeps the source payload reasonable.
+ * Build a sized, cropped Unsplash URL. Images are served unoptimized (see
+ * next.config), so the browser downloads exactly this — request the smallest
+ * width the slot actually needs. `auto=format` returns WebP/AVIF where
+ * supported. `q` can be dropped low for images that sit behind dark overlays.
  */
-export function img(photo: Photo, w = 1400, h?: number): string {
+export function img(photo: Photo, w = 1200, h?: number, q = 70): string {
   const params = new URLSearchParams({
     auto: "format",
     fit: "crop",
-    q: "80",
+    q: String(q),
     w: String(w),
   });
   if (h) params.set("h", String(h));
@@ -26,7 +28,7 @@ export const photo = {
   camBlackKit: { id: "1516035069371-29a1b244cc32", alt: "Camera body with two prime lenses on a dark surface" },
   camCanonZoom: { id: "1495707902641-75cac588d2e9", alt: "DSLR camera fitted with a telephoto zoom lens" },
   camNeon: { id: "1516724562728-afc824a36e84", alt: "Mirrorless camera lit with neon pink and blue light" },
-  camLensTape: { id: "1621520291095-aa6c7137f048", alt: "Cinema camera and lens photographed in dramatic low light" },
+  camLensTape: { id: "1621520291095-aa6c7137f048", alt: "Professional camera body and lens photographed in dramatic low light" },
   camPolaroid: { id: "1526170375885-4d8ecf77b99f", alt: "Instant film camera on a light background" },
   lensDark: { id: "1452780212940-6f5c0d14d848", alt: "Camera lens close-up in low light" },
 

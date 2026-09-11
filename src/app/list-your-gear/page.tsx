@@ -37,19 +37,19 @@ export default function ListYourGearPage() {
     <div className="pt-24 lg:pt-0">
       {/* Hero */}
       <section className="relative flex min-h-[80vh] items-end overflow-hidden lg:min-h-[88vh]">
-        <Image src={img(photo.creatorUrban, 2000)} alt="A creator with their production equipment" fill priority sizes="100vw" className="object-cover" />
+        <Image src={img(photo.creatorUrban, 1600, undefined, 68)} alt="A creator with their production equipment" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-bg/70 to-transparent" />
         <div className="shell relative w-full pb-16 pt-24 lg:pb-24">
           <div className="max-w-3xl">
-            <SectionLabel className="mb-6">For Owners</SectionLabel>
-            <h1 className="text-hero">Your gear could be working.</h1>
-            <p className="mt-6 max-w-xl text-lg text-ink-secondary">
+            <SectionLabel className="mb-6 animate-fade-up">For Owners</SectionLabel>
+            <h1 className="text-hero animate-fade-up [animation-delay:90ms]">Your gear could be working.</h1>
+            <p className="mt-6 max-w-xl text-lg text-ink-secondary animate-fade-up [animation-delay:180ms]">
               Have cameras, lenses, lighting, audio equipment or production gear
               sitting unused? List them on Gearly and earn whenever another
               creator hires them.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 animate-fade-up [animation-delay:270ms]">
               <Button href="/#" size="lg">Start Listing</Button>
               <Button href="/how-it-works" size="lg" variant="secondary">How Owner Rentals Work</Button>
             </div>
@@ -136,7 +136,7 @@ export default function ListYourGearPage() {
 
       {/* CTA */}
       <section className="relative overflow-hidden">
-        <Image src={img(photo.setBlue, 2000)} alt={photo.setBlue.alt} fill sizes="100vw" className="object-cover" />
+        <Image src={img(photo.setBlue, 1280, undefined, 50)} alt={photo.setBlue.alt} fill loading="lazy" sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-bg/85" />
         <div className="shell relative py-24 text-center lg:py-32">
           <Reveal>

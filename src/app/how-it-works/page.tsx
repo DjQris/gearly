@@ -71,7 +71,7 @@ export default function HowItWorksPage() {
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <Reveal className="relative order-last aspect-[4/5] overflow-hidden rounded-card bg-surface-3 lg:order-first">
               <Image
-                src={img(photo.photographer, 1000)}
+                src={img(photo.photographer, 800)}
                 alt={photo.photographer.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -115,7 +115,7 @@ export default function HowItWorksPage() {
 
       {/* CTA */}
       <section className="relative mt-20 overflow-hidden lg:mt-28">
-        <Image src={img(photo.rigOnSet, 2000)} alt={photo.rigOnSet.alt} fill sizes="100vw" className="object-cover" />
+        <Image src={img(photo.rigOnSet, 1280, undefined, 50)} alt={photo.rigOnSet.alt} fill loading="lazy" sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-bg/80" />
         <div className="shell relative py-24 text-center lg:py-32">
           <Reveal>

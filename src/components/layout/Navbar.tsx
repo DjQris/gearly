@@ -18,6 +18,7 @@ export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -26,8 +27,26 @@ export function Navbar() {
   const overHero = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let lastY = window.scrollY;
+    let ticking = false;
+    const update = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      // Ignore tiny scroll jitters; hide on the way down (past the nav),
+      // reveal on the way up or near the top.
+      if (Math.abs(y - lastY) > 6) {
+        setHidden(y > lastY && y > 120);
+      }
+      lastY = y;
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -46,6 +65,8 @@ export function Navbar() {
   }, [pathname]);
 
   const solid = scrolled || !overHero || menuOpen || searchOpen;
+  // Keep the bar visible whenever a panel is open.
+  const isHidden = hidden && !menuOpen && !searchOpen;
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +78,8 @@ export function Navbar() {
     <>
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
+        "fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-300 ease-smooth will-change-transform",
+        isHidden ? "-translate-y-full" : "translate-y-0",
         solid
           ? "border-b border-line bg-bg/85 backdrop-blur-xl"
           : "border-b border-transparent bg-gradient-to-b from-black/50 to-transparent"

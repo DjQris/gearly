@@ -30,8 +30,9 @@ const config: Config = {
       fontSize: {
         // Fluid editorial scale
         hero: [
-          "clamp(3rem, 1.2rem + 8.5vw, 7rem)",
-          { lineHeight: "0.95", letterSpacing: "-0.03em", fontWeight: "600" },
+          // Max 71px (4.4375rem); scales down for tablet/mobile.
+          "clamp(2.5rem, 1rem + 6vw, 4.4375rem)",
+          { lineHeight: "1.0", letterSpacing: "-0.03em", fontWeight: "600" },
         ],
         display: [
           "clamp(2.5rem, 1.4rem + 5vw, 4.5rem)",
@@ -42,8 +43,8 @@ const config: Config = {
           { lineHeight: "1.05", letterSpacing: "-0.02em", fontWeight: "600" },
         ],
         stat: [
-          "clamp(3.5rem, 2rem + 8vw, 8rem)",
-          { lineHeight: "0.9", letterSpacing: "-0.04em", fontWeight: "600" },
+          "clamp(2.5rem, 1.5rem + 4.5vw, 5.5rem)",
+          { lineHeight: "0.95", letterSpacing: "-0.035em", fontWeight: "600" },
         ],
       },
       maxWidth: {
@@ -64,9 +65,15 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "ken-burns": {
+          "0%": { transform: "scale(1.02)" },
+          "100%": { transform: "scale(1.1)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both",
+        // Slow, premium background drift for hero imagery.
+        "ken-burns": "ken-burns 18s ease-in-out infinite alternate",
       },
     },
   },

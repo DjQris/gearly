@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { SectionLabel, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { RatingStars } from "@/components/ui/RatingStars";
+import { CountUp } from "@/components/ui/CountUp";
 import { Accordion } from "@/components/ui/Accordion";
 import { SearchModule } from "@/components/marketplace/SearchModule";
 import { CategoryTile } from "@/components/marketplace/CategoryTile";
@@ -42,30 +43,31 @@ export default function HomePage() {
       {/* ————————————————————————— HERO ————————————————————————— */}
       <section className="relative flex min-h-[92vh] items-end overflow-hidden">
         <Image
-          src={img(photo.rigOnSet, 2000)}
-          alt={photo.rigOnSet.alt}
+          src={img(photo.camNeon, 1600, undefined, 72)}
+          alt={photo.camNeon.alt}
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="animate-ken-burns object-cover object-[18%_center] motion-reduce:animate-none"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg/70 to-transparent" />
+        {/* Lighter overlays so the camera reads on the right; left stays dark for text */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,#0A0A0A_0%,rgba(10,10,10,0.45)_45%,rgba(10,10,10,0.2)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0A0A0A_0%,rgba(10,10,10,0.55)_40%,transparent_75%)]" />
 
-        <div className="shell relative w-full pb-12 pt-32 lg:pb-20">
+        <div className="shell relative w-full pb-12 pt-40 lg:pb-20 lg:pt-48">
           <div className="max-w-4xl">
-            <SectionLabel className="mb-6">Rent the gear. Make the work.</SectionLabel>
-            <h1 className="text-hero">
+            <SectionLabel className="mb-6 animate-fade-up">Rent the gear. Make the work.</SectionLabel>
+            <h1 className="text-hero animate-fade-up [animation-delay:90ms]">
               The gear behind
               <br />
               your next shot.
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-ink-secondary">
+            <p className="mt-6 max-w-xl text-lg text-ink-secondary animate-fade-up [animation-delay:180ms]">
               Discover and hire professional cameras, lenses, lighting and
               production equipment from creators near you — available exactly
               when you need it.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3 animate-fade-up [animation-delay:270ms]">
               <Button href="/browse" size="lg">
                 Browse Gear
               </Button>
@@ -75,7 +77,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mt-10 max-w-4xl lg:mt-14">
+          <div className="mt-10 max-w-4xl animate-fade-up [animation-delay:360ms] lg:mt-14">
             <SearchModule />
           </div>
         </div>
@@ -188,7 +190,7 @@ export default function HomePage() {
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <Reveal className="relative aspect-[4/5] overflow-hidden rounded-card bg-surface-3 sm:aspect-[3/2] lg:aspect-[4/5]">
               <Image
-                src={img(photo.creatorUrban, 1000)}
+                src={img(photo.creatorUrban, 800)}
                 alt="A creative professional surrounded by their production equipment"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -253,7 +255,9 @@ export default function HomePage() {
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 0.06}>
-                <div className="tnum text-stat text-ink">{s.value}</div>
+                <div className="tnum text-stat text-ink">
+                  <CountUp value={s.value} suffix={s.suffix} />
+                </div>
                 <p className="mt-2 text-ink-secondary">{s.label}</p>
               </Reveal>
             ))}
@@ -327,9 +331,10 @@ export default function HomePage() {
       {/* ————————————————————————— FINAL CTA ————————————————————————— */}
       <section className="relative overflow-hidden">
         <Image
-          src={img(photo.setBlue, 2000)}
+          src={img(photo.setBlue, 1280, undefined, 50)}
           alt={photo.setBlue.alt}
           fill
+          loading="lazy"
           sizes="100vw"
           className="object-cover"
         />
